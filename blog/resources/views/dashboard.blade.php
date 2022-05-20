@@ -31,15 +31,18 @@
 	<div class="row justify-content-center" >
 		
 		@foreach($user as $users)
+		
+		
 		<div class="col-md-8 py-2 my-2" style="background:#9DDEFF;border-radius: 5px;">
 			<div class="flex-center position-ref full-height">
 				
+				<a href="/employee/{{$users->id}}" class="nav-item">{{$users->name}}</a>
 				
-				{{$users->name}}
 				
 
 			</div>
 		</div>
+		
 		@endforeach
 		
 	</div>

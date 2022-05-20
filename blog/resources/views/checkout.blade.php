@@ -19,26 +19,7 @@
                             {{ session('error') }}
                         </div>
                     @endif
-			@guest
-			<div class="row justify-content-center" >
-				<div class="col-md-8" style="background:#9DDEFF;border-radius: 5px;">
-					<div class="flex-center position-ref full-height">
-						
-						<a href="login">login</a>
-						<a href="register">register</a>
-						
-						
-						
-						<div class="content">
-							<div class="title m-b-md">
-								Employee Management System
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			@else
+			
 			
 			
 			<div class="row d-flex justify-content-between">
@@ -60,18 +41,30 @@
 				<div class="">
 					{{$todayDate}}
 					{{$todayTime}}
-					<form action="/checkin"  method="POST">
+					
+					@foreach($infos as $info)
+
+					
+					
+
+					<form action="/check-out/{{$info->id}}"  method="POST">
+
+						
 						{{ csrf_field() }}
             			{{ method_field('PUT') }}
-						<input type="hidden" name="name" value="{{ Auth::user()->name }}">
-						<input type="hidden" name="date" value="{{$todayDate}}">
-						<input type="hidden" name="checkin" value="{{$todayTime}}">
-						<button type="submit" class="btn btn-primary" >Check In</button>
+						<input type="hidden" name="checkout" value="{{$todayTime}}">
+						<button type="submit" class="btn btn-primary" >Check Out</button>
+				
+					
 					</form>
+
+					
+
+					@endforeach
 				</div>
 			</div>
 			
-			@endguest
+			
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

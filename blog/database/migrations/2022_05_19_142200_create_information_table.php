@@ -15,10 +15,10 @@ class CreateInformationTable extends Migration
     {
         Schema::create('information', function (Blueprint $table) {
             $table->id();
-            $table->string('date');
-            $table->string('checkin');
-            $table->string('checkout');
-            $table->string('office_hour');
+            $table->string('date')->nullable();
+            $table->string('name')->nullable();
+            $table->string('checkin')->nullable();
+            $table->string('checkout')->nullable();
             $table->timestamps();
         });
         Schema::table('information', function (Blueprint $table) {

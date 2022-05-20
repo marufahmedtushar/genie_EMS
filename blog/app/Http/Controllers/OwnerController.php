@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Information;
 class OwnerController extends Controller
 {
     public function index()
     {
     
-        $user = User::all();
+        $user = Information::all();
         return view('dashboard')->with('user',$user);
     }
     public function newregister()
@@ -39,6 +40,12 @@ class OwnerController extends Controller
         $employee->save();
 
         return redirect('/dashboard');
+    }
+
+    public function employeedetails($id){
+        $info = Information::findOrFail($id);
+        $user = User::all();
+        return view('employee')->with('info',$info)->with('user',$user);
     }
 
 }

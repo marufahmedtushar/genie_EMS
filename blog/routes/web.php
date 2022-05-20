@@ -18,7 +18,11 @@ Route::group(['middleware' => ['auth','owner']],function() {
     Route::get('/dashboard','OwnerController@index');
     Route::get('/newregister','OwnerController@newregister');
     Route::put('/newregister','OwnerController@employeestore');
+    Route::get('/employee/{id}','OwnerController@employeedetails');
 });
 Auth::routes();
 Route::get('/', 'EmployeeController@index');
+Route::get('/checkout', 'EmployeeController@checkout');
+Route::put('/checkin', 'EmployeeController@checkin');
+Route::put('/check-out/{id}', 'EmployeeController@check_out');
 
