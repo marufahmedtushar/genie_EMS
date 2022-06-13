@@ -19,6 +19,7 @@ class CreateInformationTable extends Migration
             $table->string('name')->nullable();
             $table->string('checkin')->nullable();
             $table->string('checkout')->nullable();
+            $table->string('out')->default('0')->nullable();
             $table->timestamps();
         });
         Schema::table('information', function (Blueprint $table) {

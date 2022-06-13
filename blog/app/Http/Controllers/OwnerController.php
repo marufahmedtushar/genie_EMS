@@ -5,15 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\User;
 use App\Information;
 class OwnerController extends Controller
 {
     public function index()
     {
-    
-        $user = Information::all();
-        return view('dashboard')->with('user',$user);
+        
+
+        
+        $users = User::all();
+        $information = DB::table('information')-> orderBy('id','desc')->get();
+        $todayDate = Carbon::now()->format('m/d/Y');
+
+        return view('dashboard')->with('users',$users)->with('information',$information)->with('todayDate',$todayDate);
     }
     public function newregister()
     {
@@ -43,9 +50,12 @@ class OwnerController extends Controller
     }
 
     public function employeedetails($id){
-        $info = Information::findOrFail($id);
-        $user = User::all();
-        return view('employee')->with('info',$info)->with('user',$user);
+        $info =  DB::table('information')-> orderBy('created_at', 'desc');
+        $user = User::findOrFail($id);
+        return view('employee2')->with('info',$info)->with('user',$user);
     }
+
+
+    
 
 }

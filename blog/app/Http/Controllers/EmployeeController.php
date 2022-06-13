@@ -10,14 +10,15 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $todayDate = Carbon::now()->format('d M, Y');
+        // $todayDate = Carbon::now()->format('d M, Y');
+        $todayDate = Carbon::now()->format('m/d/Y');
 
         $todayTime = Carbon::now()->format('h:i A');
         return view('index')->with('todayDate',$todayDate)->with('todayTime',$todayTime);
     }
     public function checkout()
     {
-        $todayDate = Carbon::now()->format('d M, Y');
+        $todayDate = Carbon::now()->format('m/d/Y');
 
         $todayTime = Carbon::now()->format('h:i A');
 
@@ -51,6 +52,7 @@ class EmployeeController extends Controller
     public function check_out(Request $request,$id){
         $checkout = Information::findOrFail($id);
         $checkout->checkout = $request->input('checkout');
+        $checkout->out = $request->input('out');
         $checkout->update();
 
         return redirect('/')->with('status','You Have Checked out...');

@@ -44,6 +44,8 @@
 					
 					@foreach($infos as $info)
 
+					@if($info->out == '0')
+
 					
 					
 
@@ -53,12 +55,13 @@
 						{{ csrf_field() }}
             			{{ method_field('PUT') }}
 						<input type="hidden" name="checkout" value="{{$todayTime}}">
+						<input type="hidden" name="out" value="1">
 						<button type="submit" class="btn btn-primary" >Check Out</button>
 				
 					
 					</form>
 
-					
+					@endif
 
 					@endforeach
 				</div>
